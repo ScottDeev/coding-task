@@ -16,6 +16,9 @@ const reducer = (state, action) => {
       //TODO
       return {
         ...state,
+        isAuthenticated: true,
+        user: action.payload,
+        role: 'admin'
       };
     case "LOGOUT":
       localStorage.clear();

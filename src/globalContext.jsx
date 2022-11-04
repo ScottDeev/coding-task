@@ -37,6 +37,7 @@ export const showToast = (dispatch, message, timeout = 3000) => {
       message,
     },
   });
+  console.log(message);
 
   setTimeout(() => {
     dispatch({
