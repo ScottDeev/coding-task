@@ -34,7 +34,7 @@ const reducer = (state, action) => {
 };
 
 let sdk = new MkdSDK();
-sdk.check()
+
 
 export const tokenExpireError = (dispatch, errorMessage) => {
   const role = localStorage.getItem("role");
@@ -48,9 +48,17 @@ export const tokenExpireError = (dispatch, errorMessage) => {
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  React.useEffect(() => {
+  React.useEffect( () => {
     //TODO
+    const token = async () =>{
+      const check = await sdk.check()
+      if(check.message === 'TOKEN_EXPIRED'){
+        console.log('Token has expired');
+      }else{
+        console.log('Token has not expired');
+      }
+    }
+    token()
   }, []);
 
   return (

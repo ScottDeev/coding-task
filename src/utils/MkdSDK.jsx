@@ -98,12 +98,18 @@ export default function MkdSDK() {
         if (paginateResult.status === 403) {
           throw new Error(jsonPaginate.message);
         }
-        return await jsonPaginate;
+        return jsonPaginate;
       default:
         break;
     }
   };  
 
+  // const payload = {
+  //   "payload": {},
+  //   "page": 1,
+  //   "limit": 10
+  // }
+  // this.callRestAPI(payload, 'PAGINATE')
   this.check = async function (role) {
     //TODO
     const header = {
@@ -111,20 +117,14 @@ export default function MkdSDK() {
       "x-project": 'cmVhY3R0YXNrOjVmY2h4bjVtOGhibzZqY3hpcTN4ZGRvZm9kb2Fjc2t5ZQ==',
       Authorization: "Bearer " + localStorage.getItem("token"),
     };
-      fetch ('https://reacttask.mkdlabs.com/v2/api/lambda/check', {
+      let res = await fetch ('https://reacttask.mkdlabs.com/v2/api/lambda/check', {
         method: 'POST',
         headers: header,
         body: JSON.stringify({
           role: role
         }),
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
+      return await res.json()
   };
   // this.check('admin')
 
