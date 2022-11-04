@@ -130,7 +130,7 @@ export default function MkdSDK() {
         console.log(err.message)
       })
   };
-  this.check('admin')
+  // this.check('admin')
 
   return this;
 }
