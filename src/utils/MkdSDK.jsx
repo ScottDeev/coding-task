@@ -30,14 +30,14 @@ export default function MkdSDK() {
       })
       .then((response) => response.json())
       .then((data) => {
-        if(data.message === 'SUCCESS'){
-          alert('You are logged in.');
-        } 
+        console.log(data);
       })
       .catch(err => {
-        alert(err.message)
+        console.log(err.message)
       })
   };
+  // Used the provided details to test
+  // this.login('adminreacttask@manaknight.com', 'a123456', 'admin')
 
   this.getHeader = function () {
     return {
@@ -110,7 +110,27 @@ export default function MkdSDK() {
 
   this.check = async function (role) {
     //TODO
+    const header = {
+      "Content-Type": "application/json",
+      "x-project": 'cmVhY3R0YXNrOjVmY2h4bjVtOGhibzZqY3hpcTN4ZGRvZm9kb2Fjc2t5ZQ==',
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    };
+      fetch ('https://reacttask.mkdlabs.com/v2/api/lambda/check', {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify({
+          role: role
+        }),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
   };
+  this.check('admin')
 
   return this;
 }
