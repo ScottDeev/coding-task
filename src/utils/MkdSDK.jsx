@@ -2,7 +2,7 @@ export default function MkdSDK() {
   this._baseurl = "https://reacttask.mkdlabs.com";
   this._project_id = "reacttask";
   this._secret = "d9hedycyv6p7zw8xi34t9bmtsjsigy5t7";
-  this._table = "";
+  this._table = "video";
   this._custom = "";
   this._method = "";
 
@@ -49,7 +49,7 @@ export default function MkdSDK() {
   this.callRestAPI = async function (payload, method) {
     const header = {
       "Content-Type": "application/json",
-      "x-project": base64Encode,
+      "x-project": 'cmVhY3R0YXNrOjVmY2h4bjVtOGhibzZqY3hpcTN4ZGRvZm9kb2Fjc2t5ZQ==',
       Authorization: "Bearer " + localStorage.getItem("token"),
     };
 
@@ -84,7 +84,7 @@ export default function MkdSDK() {
         const paginateResult = await fetch(
           this._baseurl + `/v1/api/rest/${this._table}/${method}`,
           {
-            method: "post",
+            method: "POST",
             headers: header,
             body: JSON.stringify(payload),
           }
@@ -98,7 +98,7 @@ export default function MkdSDK() {
         if (paginateResult.status === 403) {
           throw new Error(jsonPaginate.message);
         }
-        return jsonPaginate;
+        return await jsonPaginate;
       default:
         break;
     }

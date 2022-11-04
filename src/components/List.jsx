@@ -8,7 +8,7 @@ export default function List() {
           <div className="flex w-[40%] gap-[20px] items-center">
             <span>0{data.id}</span>
             <img src={data.displayImage} alt="image" />
-            <h2>{data.title}</h2>
+            <h2 className="font-[100]">{data.title}</h2>
           </div>
           <div className="w-[30%] flex gap-[5px] items-center">
             <div>

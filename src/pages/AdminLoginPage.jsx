@@ -6,6 +6,7 @@ import MkdSDK from "../utils/MkdSDK";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
 import { GlobalContext, showToast } from "../globalContext";
+import Video from "../components/Vidoe";
 
 const AdminLoginPage = () => {
   const schema = yup
@@ -90,6 +91,7 @@ const AdminLoginPage = () => {
           />
         </div>
       </form>
+      <Video/>
     </div>
   );
 };
