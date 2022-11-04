@@ -1,8 +1,14 @@
 import React from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import List from "../components/List";
+import MkdSDK from "../utils/MkdSDK";
 
 const AdminDashboardPage = () => {
+  let sdk = new MkdSDK()
+  sdk.callRestAPI({
+    page:1, 
+    limit: 10
+  }, 'PAGINATE')
   return (
     <>
       <div className="bg-black px-[100px] py-[50px]">

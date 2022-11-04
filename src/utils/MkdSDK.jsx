@@ -82,11 +82,11 @@ export default function MkdSDK() {
           payload.limit = 10;
         }
         const paginateResult = await fetch(
-          this._baseurl + `/v1/api/rest/${this._table}/${method}`,
+          'https://reacttask.mkdlabs.com/v1/api/rest/video/PAGINATE',
           {
             method: "POST",
             headers: header,
-            body: JSON.stringify(payload),
+            body: JSON.stringify({...payload}),
           }
         );
         const jsonPaginate = await paginateResult.json();
@@ -104,12 +104,6 @@ export default function MkdSDK() {
     }
   };  
 
-  // const payload = {
-  //   "payload": {},
-  //   "page": 1,
-  //   "limit": 10
-  // }
-  // this.callRestAPI(payload, 'PAGINATE')
   this.check = async function (role) {
     //TODO
     const header = {
