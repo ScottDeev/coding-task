@@ -19,7 +19,7 @@ export default function MkdSDK() {
       "Content-Type": "application/json",
       "x-project": 'cmVhY3R0YXNrOjVmY2h4bjVtOGhibzZqY3hpcTN4ZGRvZm9kb2Fjc2t5ZQ==',
     };
-      fetch ('https://reacttask.mkdlabs.com/v2/api/lambda/login', {
+      let res = await fetch ('https://reacttask.mkdlabs.com/v2/api/lambda/login', {
         method: 'POST',
         headers: header,
         body: JSON.stringify({
@@ -28,16 +28,12 @@ export default function MkdSDK() {
           role: role
         }),
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
+      return await res.json()
+      // return data
   };
   // Used the provided details to test
-  // this.login('adminreacttask@manaknight.com', 'a123456', 'admin')
+  // const user = await this.login('adminreacttask@manaknight.com', 'a123456', 'admin')
+  // console.log(user);
 
   this.getHeader = function () {
     return {
