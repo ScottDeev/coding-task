@@ -31,7 +31,7 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     //TODO
     const user = await sdk.login(data.email, data.password, 'admin');
-    console.log(user);
+    // When user is logged in, login case in reducer is fired
     dispatch({ type: 'LOGIN', payload: user})
     if(user.error === false){
       showToast(snackbar, user.role)

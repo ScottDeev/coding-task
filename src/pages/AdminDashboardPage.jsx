@@ -4,11 +4,18 @@ import List from "../components/List";
 import MkdSDK from "../utils/MkdSDK";
 
 const AdminDashboardPage = () => {
-  let sdk = new MkdSDK()
-  sdk.callRestAPI({
-    page:1, 
-    limit: 10
-  }, 'PAGINATE')
+  // const page = 1
+  // const limit = 10
+  // let sdk = new MkdSDK()
+  // Kept getting invalid secreat 401 error here. Could not find a way to fetech the video data
+  // const fetch = async () => {
+  //   const data = await sdk.callRestAPI({
+  //     page:page, 
+  //     limit: limit
+  //   }, 'PAGINATE')
+  //   console.log(data);
+  // }
+  // fetch()
   return (
     <>
       <div className="bg-black px-[100px] py-[50px]">
