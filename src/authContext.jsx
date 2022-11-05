@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
-import MkdSDK from "./utils/MkdSDK";
+import React, {  useReducer } from "react";
 
 export const AuthContext = React.createContext();
 

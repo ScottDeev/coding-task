@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import List from "../components/List";
 import MkdSDK from "../utils/MkdSDK";
-import { useEffect } from "react";
 import { AuthContext, tokenExpireError } from "../authContext";
 
 
