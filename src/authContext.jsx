@@ -1,7 +1,15 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import MkdSDK from "./utils/MkdSDK";
 
 export const AuthContext = React.createContext();
+
+// useEffect(() => {
+//   if(localStorage.getItem("action")){
+//     const action = JSON.parse(localStorage.getItem("action"))
+//     console.log(action);
+//     dispatch({type: 'LOGIN', payload: action})
+//   } 
+// }, [])
 
 const initialState = {
   isAuthenticated: false,
@@ -9,11 +17,12 @@ const initialState = {
   token: null,
   role: null,
 };
-
+console.log(initialState);
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       //TODO
+      localStorage.setItem('action', JSON.stringify(action.payload))
       return {
         ...state,
         isAuthenticated: true,
@@ -48,17 +57,15 @@ export const tokenExpireError = (dispatch, errorMessage) => {
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log(state);
   React.useEffect( () => {
     //TODO
-    const token = async () =>{
-      const check = await sdk.check()
-      if(check.message === 'TOKEN_EXPIRED'){
-        console.log('Token has expired');
-      }else{
-        console.log('Token has not expired');
-      }
-    }
-    token()
+    if(localStorage.getItem("action")){
+      const action = JSON.parse(localStorage.getItem("action"))
+      console.log(action);
+      dispatch({type: 'LOGIN', payload: action})
+    } 
   }, []);
 
   return (
