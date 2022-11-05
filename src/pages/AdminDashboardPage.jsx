@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import List from "../components/List";
 import MkdSDK from "../utils/MkdSDK";
+import { useEffect } from "react";
+import { AuthContext, tokenExpireError } from "../authContext";
+
 
 const AdminDashboardPage = () => {
-  // const page = 1
-  // const limit = 10
-  // let sdk = new MkdSDK()
-  // Kept getting invalid secreat 401 error here. Could not find a way to fetech the video data
-  // const fetch = async () => {
-  //   const data = await sdk.callRestAPI({
-  //     page:page, 
-  //     limit: limit
-  //   }, 'PAGINATE')
-  //   console.log(data);
-  // }
-  // fetch()
+  // Used the expired_at value to dynamically log user out when token has expired
+  let sdk = new MkdSDK()
+  const { dispatch} = useContext(AuthContext)
+  const logoutOnExpiredToken = async () => {
+    const expire = await sdk.check('admin')
+    const user =  JSON.parse(localStorage.getItem("action"))
+      const logout = setTimeout(() => {
+        tokenExpireError(dispatch, expire.message)
+      }, [user.expire_at])
+      return () => clearTimeout(logout)
+  }
+  logoutOnExpiredToken()
   return (
     <>
       <div className="bg-black px-[100px] py-[50px]">

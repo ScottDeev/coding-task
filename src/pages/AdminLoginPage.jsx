@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import MkdSDK from "../utils/MkdSDK";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../authContext";
+import { AuthContext, tokenExpireError } from "../authContext";
 import { GlobalContext, showToast } from "../globalContext";
 
 const AdminLoginPage = () => {
@@ -31,6 +31,7 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     //TODO
     const user = await sdk.login(data.email, data.password, 'admin');
+    localStorage.setItem('token', JSON.stringify(user.token))
     // When user is logged in, login case in reducer is fired
     dispatch({ type: 'LOGIN', payload: user})
     if(user.error === false){

@@ -36,15 +36,12 @@ const reducer = (state, action) => {
   }
 };
 
-
 export const tokenExpireError = (dispatch, errorMessage) => {
-  // const role = JSON.parse(localStorage.getItem("role"));
   if (errorMessage === "TOKEN_EXPIRED") {
     dispatch({
       type: "LOGOUT",
     });
     window.location.href = "/" + 'admin' + "/login";
-    console.log(errorMessage);
   }
 };
 
